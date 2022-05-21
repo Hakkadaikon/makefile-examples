@@ -28,7 +28,7 @@ OBJDIRS  := $(addprefix $(OBJROOT)/, $(SRCDIRS))
 #------------------------------------------------------------------------------
 SRCFILES     := $(foreach dir, $(SRCDIRS), $(wildcard $(dir)/*.c))
 OBJFILES     := $(addprefix $(OBJROOT)/, $(SRCFILES:.c=.o))
-DEPS     := $(OBJFILES:.o=.d)
+DEPENDFILES  := $(OBJFILES:.o=.d)
 
 #------------------------------------------------------------------------------
 # Flags
@@ -77,8 +77,8 @@ all:
 clean:
 	rm -f  $(BINROOT)/$(PROGRAM)
 	rm -rf $(OBJROOT)/*
-	rm -rf $(DEPS)
+	rm -rf $(DEPENDFILES)
 
 ifneq "$(MAKECMDGOALS)" "clean"
-	-include $(DEPS)
+	-include $(DEPENDFILES)
 endif

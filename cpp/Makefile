@@ -26,9 +26,9 @@ OBJDIRS  := $(addprefix $(OBJROOT)/, $(SRCDIRS))
 #------------------------------------------------------------------------------
 # Files
 #------------------------------------------------------------------------------
-SRCFILES     := $(foreach dir, $(SRCDIRS), $(wildcard $(dir)/*.cpp))
-OBJFILES     := $(addprefix $(OBJROOT)/, $(SRCFILES:.cpp=.o))
-DEPS     := $(OBJFILES:.o=.d)
+SRCFILES    := $(foreach dir, $(SRCDIRS), $(wildcard $(dir)/*.cpp))
+OBJFILES    := $(addprefix $(OBJROOT)/, $(SRCFILES:.cpp=.o))
+DEPENDFILES := $(OBJFILES:.o=.d)
 
 #------------------------------------------------------------------------------
 # Flags
@@ -78,8 +78,8 @@ all:
 clean:
 	rm -f  $(BINROOT)/$(PROGRAM)
 	rm -rf $(OBJROOT)/*
-	rm -rf $(DEPS)
+	rm -rf $(DEPENDFILES)
 
 ifneq "$(MAKECMDGOALS)" "clean"
-	-include $(DEPS)
+	-include $(DEPENDFILES)
 endif
