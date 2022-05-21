@@ -41,7 +41,7 @@ LDFLAGS  :=
 # Make rules
 #------------------------------------------------------------------------------
 $(BINROOT)/$(PROGRAM): $(OBJFILES)
-	$(CXX) $(CFLAGS) -o $@ $^ $(LDLIBS) $(LDFLAGS)
+	$(CXX) $(CPPFLAGS) -o $@ $^ $(LDLIBS) $(LDFLAGS)
 
 $(OBJROOT)/%.o: $(SRCROOT)/%.cpp
 	if [ ! -e `dirname $@` ]; then mkdir -p `dirname $@`; fi
